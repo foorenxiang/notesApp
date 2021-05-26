@@ -1,5 +1,6 @@
 import { SERVED_NOTES_URL, NOTES_REPOSITORY_URL } from './constants';
 import _ from 'lodash';
+import isURL from './isURL';
 import stripHTMLFromString from './stripHTMLFromString';
 
 const logError = (err, url) => {
@@ -34,8 +35,8 @@ export const fetchNoteSubjects = async () => {
   const notes = {};
   for (const noteSubject in data) {
     const title = _.startCase(noteSubject);
-    const relativeURI = data[noteSubject];
-    const markdownURL = `${NOTES_REPOSITORY_URL}${relativeURI}`;
+    const URI = data[noteSubject];
+    const markdownURL = isURL(URI) ? URI : `${NOTES_REPOSITORY_URL}${URI}`;
     notes[noteSubject] = {
       title,
       markdownURL,
