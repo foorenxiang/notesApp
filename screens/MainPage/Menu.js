@@ -1,6 +1,5 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
-import { Button } from 'react-native';
+import { Button, View, StyleSheet } from 'react-native';
 
 const menuButtons = {
   item1: {
@@ -10,14 +9,13 @@ const menuButtons = {
 };
 
 export default ({ navigation }) => {
-  const { button } = menuStyles;
   const menuButtonKeys = Object.keys(menuButtons);
   const firstKey = menuButtonKeys[0];
 
   const onPress = () => null;
 
   return (
-    <>
+    <View style={menuStyles.container}>
       {Object.keys(menuButtons).length === 1 ? (
         <Button
           title={menuButtons[firstKey].title}
@@ -29,7 +27,7 @@ export default ({ navigation }) => {
           return <Button title={title} onPress={() => navigation(screen)} key={title} />;
         })
       )}
-    </>
+    </View>
   );
 };
 
