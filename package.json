@@ -5,13 +5,15 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
+    "electron": "yarn expo-electron start",
+    "electron:build-dev": "yarn electron-webpack && yarn electron-builder --dir -c.compression=store -c.mac.identity=null",
+    "electron:build-prod": "yarn electron-webpack && yarn electron-builder --dir -c.mac.identity=null",
     "eject": "expo eject"
   },
   "dependencies": {
     "@react-native-community/masked-view": "0.1.10",
     "@react-navigation/native": "^5.9.4",
     "@react-navigation/stack": "^5.14.5",
-    "electron": "^6.0.12",
     "expo": "~41.0.1",
     "expo-status-bar": "~1.0.4",
     "punycode": "^2.1.1",
@@ -30,8 +32,18 @@
   "devDependencies": {
     "@babel/core": "^7.9.0",
     "@expo/electron-adapter": "^0.0.55",
-    "@expo/webpack-config": "^0.12.73"
+    "@expo/webpack-config": "^0.12.73",
+    "electron": "^6.0.12",
+    "electron-builder": "^22.10.5",
+    "esm": "^3.2.25"
   },
   "private": true,
-  "homepage": "/notes"
+  "homepage": "/notes",
+  "name": "rxnotes",
+  "description": "RX programming notes",
+  "author": {
+    "name": "Ren Xiang Foo",
+    "url": "http://renxiang.cloud"
+  },
+  "version": "1.0.0"
 }
