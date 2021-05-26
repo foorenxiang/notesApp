@@ -8,6 +8,14 @@ import Viewer from './screens/ViewerPage';
 
 const Stack = createStackNavigator();
 
+/**
+ *
+ * TODOS:
+ * implement redux
+ * clean up navigation drilling
+ *
+ */
+
 export default function App() {
   return (
     <SafeAreaProvider>

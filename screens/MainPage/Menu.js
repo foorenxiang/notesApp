@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Button, View } from 'react-native';
-import { fetchNotes } from '../../utils/fetchTools';
+import { fetchNoteSubjects, fetchMarkdownData } from '../../utils/fetchTools';
 import menuStyles from '../../styles/menu';
 import buttonStyles from '../../styles/button';
 
@@ -13,7 +13,7 @@ const cachedData = {
 
 const useEffectCallback = (setNotes) => {
   (async () => {
-    const data = await fetchNotes();
+    const data = await fetchNoteSubjects();
     setNotes(() => data);
   })();
 };
@@ -36,10 +36,11 @@ export default ({ viewerCallback }) => {
   useEffect(() => useEffectCallback(setNotes), []);
   const titles = () => Object.keys(notes);
 
-  const onPressHandler = (selectedTitle) => {
+  const onPressHandler = async (selectedTitle) => {
+    const markdownURL = notes[selectedTitle].markdownURL;
     return viewerCallback({
       title: selectedTitle,
-      markdownData: notes[selectedTitle].markdownData,
+      markdownData: await fetchMarkdownData(markdownURL),
     });
   };
 
