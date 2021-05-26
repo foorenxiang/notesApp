@@ -1,0 +1,10 @@
+{
+  "Python Design Patterns": "Python Design Patterns/README.md",
+  "React": "https://raw.githubusercontent.com/reshinto/Basic_technologies_revision/master/react/readme.md",
+  "Flask": "https://raw.githubusercontent.com/reshinto/Basic_technologies_revision/master/API/flaskTutorial/readme.md",
+  "Graphs": "https://raw.githubusercontent.com/reshinto/Basic_technologies_revision/master/data_structures/12Graphs/readme.md",
+  "Trees": "https://raw.githubusercontent.com/reshinto/Basic_technologies_revision/master/data_structures/13Trees/readme.md",
+  "Test Driven Development": "https://raw.githubusercontent.com/reshinto/Basic_technologies_revision/master/automatedTests/testDrivenDevelopment.md",
+  "Docker": "https://raw.githubusercontent.com/reshinto/Basic_technologies_revision/master/docker/dockerCheatSheet.md",
+  "Docker Create Server": "https://raw.githubusercontent.com/reshinto/Basic_technologies_revision/master/docker/createLocalServer.md"
+}
