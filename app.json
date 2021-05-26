@@ -18,7 +18,7 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.yourcompany.yourappname",
+      "bundleIdentifier": "com.renxiang.rxnotes",
       "buildNumber": "1.0.0"
     },
     "android": {
