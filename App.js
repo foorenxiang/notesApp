@@ -25,10 +25,7 @@ export default function App() {
             // headerStyle: { backgroundColor: '#1E88FF' },
             // headerShown: false,
             headerTitleStyle: { alignSelf: 'center' },
-            headerBackTitleStyle: {
-              color: '#1E88FF',
-              backgroundColor: '#1E88FF',
-            },
+            headerBackTitleStyle: {},
           }}
         >
           <Stack.Screen
@@ -36,13 +33,16 @@ export default function App() {
             component={MainPage}
             options={{
               title: 'Notes',
-              color: '#1E88E5',
             }}
           />
           <Stack.Screen
             name="Viewer"
             component={Viewer}
-            options={({ route }) => ({ title: route.params.title })}
+            options={({
+              route: {
+                params: { title },
+              },
+            }) => ({ title })}
           />
         </Stack.Navigator>
       </NavigationContainer>
