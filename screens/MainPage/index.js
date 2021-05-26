@@ -4,12 +4,12 @@ import Menu from './Menu';
 import styles from '../../styles/container';
 
 export default ({ navigation }) => {
-  const navigationCallback = (screen) => navigation.push(screen);
+  const viewerCallback = (viewerData) => navigation.push('Viewer', viewerData);
 
   return (
     <>
       <SafeAreaView style={styles.container}>
-        <Menu navigation={navigationCallback} />
+        <Menu viewerCallback={viewerCallback} />
       </SafeAreaView>
     </>
   );

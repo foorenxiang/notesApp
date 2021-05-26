@@ -4,7 +4,7 @@ import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import MainPage from './screens/MainPage';
-import PythonDesignPatterns from './screens/PythonDesignPatterns';
+import Viewer from './screens/ViewerPage';
 
 const Stack = createStackNavigator();
 
@@ -15,6 +15,7 @@ export default function App() {
         <Stack.Navigator
           screenOptions={{
             // headerStyle: { backgroundColor: '#1E88FF' },
+            // headerShown: false,
             headerTitleStyle: { alignSelf: 'center' },
           }}
         >
@@ -27,9 +28,9 @@ export default function App() {
             }}
           />
           <Stack.Screen
-            name="PythonDesignPatterns"
-            component={PythonDesignPatterns}
-            options={{ title: 'Python Design Patterns' }}
+            name="Viewer"
+            component={Viewer}
+            options={({ route }) => ({ title: route.params.title })}
           />
         </Stack.Navigator>
       </NavigationContainer>

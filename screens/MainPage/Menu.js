@@ -1,39 +1,51 @@
-import React from 'react';
-import { Button, View, StyleSheet } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { Button, View } from 'react-native';
+import { fetchNotes } from '../../utils/fetchTools';
+import menuStyles from '../../styles/menu';
+import buttonStyles from '../../styles/button';
 
-const menuButtons = {
-  item1: {
-    title: 'Python Design Patterns',
-    screen: 'PythonDesignPatterns',
-  },
+const cachedData = {
+  // screenName: {
+  //   screen: 'screen title',
+  //   markdownData: '',
+  // },
 };
 
-export default ({ navigation }) => {
-  const menuButtonKeys = Object.keys(menuButtons);
-  const firstKey = menuButtonKeys[0];
+const useEffectCallback = (setNotes) => {
+  (async () => {
+    const data = await fetchNotes();
+    setNotes(() => data);
+  })();
+};
 
-  const onPress = () => null;
+const MenuButtons = ({ titles, onPressHandler }) =>
+  titles.map((title) => (
+    <View style={buttonStyles.container} key={`${title}_view`}>
+      <Button
+        title={title}
+        onPress={() => onPressHandler(title)}
+        key={`${title}_button`}
+        style={buttonStyles.button}
+      />
+    </View>
+  ));
+
+export default ({ viewerCallback }) => {
+  const [notes, setNotes] = useState(cachedData);
+
+  useEffect(() => useEffectCallback(setNotes), []);
+  const titles = () => Object.keys(notes);
+
+  const onPressHandler = (selectedTitle) => {
+    return viewerCallback({
+      title: selectedTitle,
+      markdownData: notes[selectedTitle].markdownData,
+    });
+  };
 
   return (
     <View style={menuStyles.container}>
-      {Object.keys(menuButtons).length === 1 ? (
-        <Button
-          title={menuButtons[firstKey].title}
-          onPress={() => navigation(menuButtons[firstKey].screen)}
-        />
-      ) : (
-        Object.keys(menuButtons).map((button) => {
-          const { title, screen } = menuButtons[button];
-          return <Button title={title} onPress={() => navigation(screen)} key={title} />;
-        })
-      )}
+      <MenuButtons titles={titles()} onPressHandler={onPressHandler} />
     </View>
   );
 };
-
-const menuStyles = StyleSheet.create({
-  container: {
-    paddingTop: '1%',
-    paddingBottom: '1%',
-  },
-});
