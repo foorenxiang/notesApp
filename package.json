@@ -11,6 +11,7 @@
     "@react-native-community/masked-view": "0.1.10",
     "@react-navigation/native": "^5.9.4",
     "@react-navigation/stack": "^5.14.5",
+    "electron": "^6.0.12",
     "expo": "~41.0.1",
     "expo-status-bar": "~1.0.4",
     "punycode": "^2.1.1",
@@ -27,7 +28,9 @@
     "rn-pdf-reader-js": "^4.1.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.9.0"
+    "@babel/core": "^7.9.0",
+    "@expo/electron-adapter": "^0.0.55",
+    "@expo/webpack-config": "^0.12.73"
   },
   "private": true,
   "homepage": "/notes"
