@@ -7,10 +7,8 @@ export default ({ navigation }) => {
   const viewerCallback = (viewerData) => navigation.push('Viewer', viewerData);
 
   return (
-    <>
-      <SafeAreaView style={styles.container}>
-        <Menu viewerCallback={viewerCallback} />
-      </SafeAreaView>
-    </>
+    <SafeAreaView style={styles.container}>
+      <Menu viewerCallback={viewerCallback} />
+    </SafeAreaView>
   );
 };
