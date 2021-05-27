@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button, View } from 'react-native';
+import { Button, ScrollView, View } from 'react-native';
 import { fetchNoteSubjects, fetchMarkdownData } from '../../utils/fetchTools';
 import localNotes from '../../localData/localNotesManifest';
 import stripHTMLFromString from '../../utils/stripHTMLFromString';
@@ -14,11 +14,11 @@ const useEffectCallback = (setOnlineNotes) => {
   })();
 };
 
-const MenuButtons = ({ titles, onPressHandler }) =>
+const MenuButtons = ({ titles, onlineNotes, onPressHandler }) =>
   titles.map((title) => (
     <View style={buttonStyles.container} key={`${title}_view`}>
       <Button
-        title={title in localNotes ? `${title} (local)` : title}
+        title={title in onlineNotes ? title : `${title} (local)`}
         onPress={() => onPressHandler(title)}
         key={`${title}_button`}
         style={buttonStyles.button}
@@ -31,31 +31,32 @@ export default ({ viewerCallback }) => {
 
   useEffect(() => useEffectCallback(setOnlineNotes), []);
   const titles = () => {
-    const mergedNotesTitles = [...Object.keys(localNotes), ...Object.keys(onlineNotes)];
+    const mergedNotesTitles = [...Object.keys(onlineNotes), ...Object.keys(localNotes)];
     return makeArrayUnique(mergedNotesTitles);
   };
 
   const onPressHandler = async (selectedTitle) => {
     // Loading selected markdown data before navigation for better experience
 
-    const isNoteLocal = selectedTitle in localNotes;
-    if (isNoteLocal) {
+    const isNoteOnline = selectedTitle in onlineNotes;
+
+    if (isNoteOnline) {
+      const markdownURL = onlineNotes[selectedTitle].markdownURL;
       return viewerCallback({
         title: selectedTitle,
-        markdownData: stripHTMLFromString(localNotes[selectedTitle]),
+        markdownData: await fetchMarkdownData(markdownURL),
       });
     }
 
-    const markdownURL = onlineNotes[selectedTitle].markdownURL;
     return viewerCallback({
       title: selectedTitle,
-      markdownData: await fetchMarkdownData(markdownURL),
+      markdownData: stripHTMLFromString(localNotes[selectedTitle]),
     });
   };
 
   return (
-    <View style={menuStyles.container}>
-      <MenuButtons titles={titles()} onPressHandler={onPressHandler} />
-    </View>
+    <ScrollView style={menuStyles.container}>
+      <MenuButtons titles={titles()} onlineNotes={onlineNotes} onPressHandler={onPressHandler} />
+    </ScrollView>
   );
 };
