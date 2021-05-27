@@ -1,4 +1,4 @@
-## **Design Pattern Notes from [Linkedin Learning](https://www.linkedin.com/learning/python-design-patterns)**
+export default `## **Design Pattern Notes from [Linkedin Learning](https://www.linkedin.com/learning/python-design-patterns)**
 <br/>
 
 # Creational Patterns
@@ -8,7 +8,7 @@
 1. Uncertainties in types of objects
 2. Decisions on what classes to be used can only be made at runtime
 <!-- Codeblock start -->
-``` python
+\`\`\` python
 class Dog:
 
     """A simple dog class"""
@@ -51,7 +51,7 @@ print(d.speak())
 c = get_pet("cat")
 
 print(c.speak())
-```
+\`\`\`
 <!-- Codeblock end -->
 <br/>
 <br/>
@@ -67,7 +67,7 @@ print(c.speak())
 3. Abstract product
 4. Concrete product: dog and dog food; cat and cat food
 <!-- Codeblock start -->
-``` python
+\`\`\` python
 class Dog:
     """One of the objects to be returned"""
 
@@ -120,7 +120,7 @@ shop = PetStore(factory)
 # Invoke the utility method to show the details of our pet
 shop.show_pet()
 
-```
+\`\`\`
 <!-- Codeblock end -->
 <br/>
 <br/>
@@ -135,7 +135,7 @@ shop.show_pet()
    1. Shared by multiple objects
 2. Borg design pattern
 <!-- Codeblock start -->
-``` python
+\`\`\` python
 class Borg:
     """The Borg pattern makes the class attributes global"""
 
@@ -170,7 +170,7 @@ y = Singleton(SNMP="Simple Network Management Protocol")
 # Print the object
 print(y)
 
-```
+\`\`\`
 <!-- Codeblock end -->
 <br/>
 <br/>
@@ -186,7 +186,7 @@ print(y)
 3. Concrete Builder: implements the interfaces
 4. Product: object being built
 <!-- Codeblock start -->
-``` python
+\`\`\` python
 class Director:
     """Director"""
 
@@ -244,7 +244,7 @@ director.construct_car()
 car = director.get_car()
 print(car)
 
-```
+\`\`\`
 <!-- Codeblock end -->
 <br/>
 <br/>
@@ -258,7 +258,7 @@ print(car)
 1. Creating a prototypical **instance** first
 2. Simply clone the prototypical instance whenever a replica is needed
 <!-- Codeblock start -->
-``` python
+\`\`\` python
 import copy
 
 
@@ -299,7 +299,7 @@ c1 = prototype.clone("skylark")
 
 print(c1)
 
-```
+\`\`\`
 <!-- Codeblock end -->
 <br/>
 <br/>
@@ -313,7 +313,7 @@ print(c1)
 ### Solution:
 1. Functions, use built-in decorator feature
 <!-- Codeblock start -->
-``` python
+\`\`\` python
 from functools import wraps
 
 
@@ -351,7 +351,7 @@ print(hello_world.__name__)
 # Check if the docstring is still the same as that of the function being decorated
 print(hello_world.__doc__)
 
-```
+\`\`\`
 <!-- Codeblock end -->
 <br/>
 <br/>
@@ -366,7 +366,7 @@ print(hello_world.__doc__)
 1. Clients: interacting with a proxy
 2. Proxy: responsible for creating the resource intensive objects
 <!-- Codeblock start -->
-``` python
+\`\`\` python
 import time
 
 
@@ -417,7 +417,7 @@ p.occupied = "Yes"
 # Make the Producer produce
 p.produce()
 
-```
+\`\`\`
 <!-- Codeblock end -->
 <br/>
 <br/>
@@ -428,7 +428,7 @@ p.produce()
 
 ### Solution:
 <!-- Codeblock start -->
-``` python
+\`\`\` python
 class Korean:
     """Korean speaker"""
 
@@ -483,7 +483,7 @@ objects.append(Adapter(british, speak=british.speak_english))
 for obj in objects:
     print("{} says '{}'\n".format(obj.name, obj.speak()))
 
-```
+\`\`\`
 <!-- Codeblock end -->
 <br/>
 <br/>
@@ -494,7 +494,7 @@ for obj in objects:
 
 ### Solution:
 <!-- Codeblock start -->
-``` python
+\`\`\` python
 class Component(object):
     """Abstract class"""
 
@@ -577,7 +577,7 @@ top.append_child(sub2)
 # Let's test if our Composite pattern works!
 top.component_function()
 
-```
+\`\`\`
 <!-- Codeblock end -->
 <br/>
 <br/>
@@ -588,7 +588,7 @@ top.component_function()
 
 ### Solution:
 <!-- Codeblock start -->
-``` python
+\`\`\` python
 class DrawingAPIOne(object):
     """Implementation-specific abstraction: concrete class one"""
 
@@ -632,7 +632,7 @@ circle2 = Circle(2, 3, 4, DrawingAPITwo())
 # Draw a circle
 circle2.draw()
 
-```
+\`\`\`
 <!-- Codeblock end -->
 <br/>
 <br/>
@@ -644,7 +644,7 @@ circle2.draw()
 
 ### Solution:
 <!-- Codeblock start -->
-``` python
+\`\`\` python
 class Subject(object):  # Represents what is being 'observed'
     def __init__(self):
         self._observers = (
@@ -715,7 +715,7 @@ c1.attach(v2)
 c1.temp = 80
 c1.temp = 90
 
-```
+\`\`\`
 <!-- Codeblock end -->
 <br/>
 <br/>
@@ -726,7 +726,7 @@ c1.temp = 90
 
 ### Solution:
 <!-- Codeblock start -->
-``` python
+\`\`\` python
 class House(object):  # The class being visited
     def accept(self, visitor):
         """Interface to accept a visitor"""
@@ -787,7 +787,7 @@ home.accept(hv)
 # Let the house accept the electrician and work on the house by invoking the visit() method
 home.accept(e)
 
-```
+\`\`\`
 <!-- Codeblock end -->
 <br/>
 <br/>
@@ -798,7 +798,7 @@ home.accept(e)
 
 ### Solution:
 <!-- Codeblock start -->
-``` python
+\`\`\` python
 def count_to(count):
     """Our iterator implementation"""
 
@@ -825,7 +825,7 @@ for num in count_to(3):
 for num in count_to(4):
     print("{}".format(num))
 
-```
+\`\`\`
 <!-- Codeblock end -->
 <br/>
 <br/>
@@ -836,7 +836,7 @@ for num in count_to(4):
 
 ### Solution:
 <!-- Codeblock start -->
-``` python
+\`\`\` python
 import types  # Import the types module
 
 
@@ -883,7 +883,7 @@ s2 = Strategy(strategy_two)
 s2.name = "Strategy Two"
 s2.execute()
 
-```
+\`\`\`
 <!-- Codeblock end -->
 <br/>
 <br/>
@@ -894,7 +894,7 @@ s2.execute()
 
 ### Solution:
 <!-- Codeblock start -->
-``` python
+\`\`\` python
 class Handler:  # Abstract handler
     """Abstract Handler"""
 
@@ -954,7 +954,7 @@ requests = [2, 5, 30]
 # Send the requests
 c.delegate(requests)
 
-```
+\`\`\`
 <!-- Codeblock end -->
 <br/>
 <br/>
@@ -972,7 +972,7 @@ c.delegate(requests)
 
 ### Solution:
 <!-- Codeblock start -->
-``` python
+\`\`\` python
 class SubsystemA:
 
 	def method1(self):
@@ -1009,7 +1009,7 @@ def main():
 if __name__ == "__main__":
 	main()
 
-```
+\`\`\`
 <!-- Codeblock end -->
 <br/>
 <br/>
@@ -1019,7 +1019,7 @@ if __name__ == "__main__":
 
 ### Solution:
 <!-- Codeblock start -->
-``` python
+\`\`\` python
 class Command:
 	def execute(self):
 		pass
@@ -1057,7 +1057,7 @@ def main():
 if __name__ == "__main__":
 	main()
 
-```
+\`\`\`
 <!-- Codeblock end -->
 <br/>
 <br/>
@@ -1067,7 +1067,7 @@ if __name__ == "__main__":
 
 ### Solution:
 <!-- Codeblock start -->
-``` python
+\`\`\` python
 from abc import ABC, abstractmethod
 
 class AbstractExpression():
@@ -1098,7 +1098,7 @@ def main():
 if __name__ == "__main__":
 	main()
 
-```
+\`\`\`
 <!-- Codeblock end -->
 <br/>
 <br/>
@@ -1108,7 +1108,7 @@ if __name__ == "__main__":
 
 ### Solution:
 <!-- Codeblock start -->
-``` python
+\`\`\` python
 import sys
 
 class Colleague(object):
@@ -1174,7 +1174,7 @@ def main():
 if __name__ == "__main__":
 	main()
 
-```
+\`\`\`
 <!-- Codeblock end -->
 <br/>
 <br/>
@@ -1184,7 +1184,7 @@ if __name__ == "__main__":
 
 ### Solution:
 <!-- Codeblock start -->
-``` python
+\`\`\` python
 import pickle
 
 class Originator:
@@ -1218,7 +1218,7 @@ def main():
 if __name__ == "__main__":
 	main()
 
-```
+\`\`\`
 <!-- Codeblock end -->
 <br/>
 <br/>
@@ -1228,7 +1228,7 @@ if __name__ == "__main__":
 
 ### Solution:
 <!-- Codeblock start -->
-``` python
+\`\`\` python
 class AtmState():
 
 	name = "state"
@@ -1274,7 +1274,7 @@ if __name__ == "__main__":
 	main()
 
 
-```
+\`\`\`
 <!-- Codeblock end -->
 <br/>
 <br/>
@@ -1284,7 +1284,7 @@ if __name__ == "__main__":
 
 ### Solution:
 <!-- Codeblock start -->
-``` python
+\`\`\` python
 import sys
 
 from abc import ABC, abstractmethod
@@ -1354,8 +1354,8 @@ def main():
 if __name__ == '__main__':
 	main()
 
-```
+\`\`\`
 <!-- Codeblock end -->
 <br/>
 <br/>
-
+`;

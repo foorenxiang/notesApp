@@ -1,11 +1,11 @@
-# React js
+export default `# React js
 ## using docker
 - run using docker
 > docker run -it --name appName -p 3000:3000 -d imageName
 - open bash in docker
 > docker exec -it appName bash
 ## setState
-```javascript
+\`\`\`javascript
 import React from "react";
 
 export default class App extends React.Component {
@@ -27,8 +27,8 @@ export default class App extends React.Component {
     return (<div onClick={this.handleClick}>{count}</div>);
   }
 }
-```
-```javascript
+\`\`\`
+\`\`\`javascript
 import React, {useState} from "react";
   
 export default function App() {
@@ -38,10 +38,10 @@ export default function App() {
   }
   return (<div onClick={handleClick}>{count}</div>);
 }
-```
+\`\`\`
 #### handle multiple states
 - example 1
-```javascript
+\`\`\`javascript
 import React from "react";
 
 export default class App extends React.Component {
@@ -59,8 +59,8 @@ export default class App extends React.Component {
     return (<input onChange={this.handleChange} name={name1} value={name1} />);
   }
 }
-```
-```javascript
+\`\`\`
+\`\`\`javascript
 import React, {useState} from "react";
   
 export default function App() {
@@ -78,9 +78,9 @@ export default function App() {
   
   return (<input onChange={handleChange} value={state.name1} name={state.name1} />);
 }
-```
+\`\`\`
 - example 2
-```javascript
+\`\`\`javascript
 import React from "react";
 
 export default class App extends React.Component {
@@ -96,8 +96,8 @@ export default class App extends React.Component {
     return (<input onChange={this.handleChange("name1")} value={name1} />);
   }
 }
-```
-```javascript
+\`\`\`
+\`\`\`javascript
 import React, {useState} from "react";
   
 export default function App() {
@@ -115,10 +115,10 @@ export default function App() {
   
   return (<input onChange={handleChange("name1")} value={state.name1} />);
 }
-```
+\`\`\`
 ## Lifecycle vs Hooks
 ### ComponentDidMount
-```javascript
+\`\`\`javascript
 import React from "react";
 
 export default class App extends React.Component {
@@ -130,9 +130,9 @@ export default class App extends React.Component {
     return (<div></div>);
   }
 }
-```
+\`\`\`
 #### useEffect
-```javascript
+\`\`\`javascript
 import React, {useEffect} from "react";
 
 export default function App() {
@@ -142,9 +142,9 @@ export default function App() {
   
   return (<div></div>);
 }
-```
+\`\`\`
 ### ComponentDidUpdate
-```javascript
+\`\`\`javascript
 import React from "react";
 
 export default class App extends React.Component {
@@ -159,9 +159,9 @@ export default class App extends React.Component {
     return (<div>{something}</div>);
   }
 }
-```
+\`\`\`
 #### useEffect
-```javascript
+\`\`\`javascript
 import React, {useEffect} from "react";
 
 export default function App(props) {
@@ -173,9 +173,9 @@ export default function App(props) {
   
   return (<div>{something}</div>);
 }
-```
+\`\`\`
 ### ComponentWillUnmount
-```javascript
+\`\`\`javascript
 import React from "react";
 
 export default class App extends React.Component {
@@ -187,9 +187,9 @@ export default class App extends React.Component {
     return (<div></div>);
   }
 }
-```
+\`\`\`
 #### useEffect
-```javascript
+\`\`\`javascript
 import React, {useEffect} from "react";
 
 export default function App(props) {
@@ -199,11 +199,11 @@ export default function App(props) {
   
   return (<div></div>);
 }
-```
+\`\`\`
 ### ShouldComponentUpdate
 - Should be used if a function renders the same result given the same props and states (mainly for performance optimization)
 #### method 1: declaring in the shouldComponentUpdate method
-```javascript
+\`\`\`javascript
 import React from "react";
 
 export default class App extends React.Component {
@@ -239,9 +239,9 @@ export default class App extends React.Component {
     );
   }
 }
-```
+\`\`\`
 #### method 2: use PureComponent (preferred method)
-```javascript
+\`\`\`javascript
 import React from "react";
 
 export default class App extends React.PureComponent {
@@ -267,9 +267,9 @@ export default class App extends React.PureComponent {
     );
   }
 }
-```
+\`\`\`
 #### method 3: use memo for functional components
-```javascript
+\`\`\`javascript
 import React, {useState, memo} from "react";
 
 function App() {
@@ -301,7 +301,7 @@ function areEqual(prevProps, nextProps) {
 }
 
 export default memo(App, areEqual);
-```
+\`\`\`
 ### useMemo
 - Memoization: cache result of function call
 - Warning: do not prematurely optimize performance, use only as needed for expensive calculations
@@ -310,7 +310,7 @@ export default memo(App, areEqual);
 - help to avoid expensive calculations on every render
 - if no dependency array is provided, a new value will be computed on every render
 - calls its function and returns the result value
-```javascript
+\`\`\`javascript
 import React, {useState, useMemo } from "react";
 
 const App = () => {
@@ -328,7 +328,7 @@ const App = () => {
 };
 
 export default App;
-```
+\`\`\`
 ### useCallback for functional methods
 - Memoization: cache result of function call
 - Warning: do not prematurely optimize performance, use only as needed for expensive calculations
@@ -336,14 +336,14 @@ export default App;
 - returns its memoized function when the dependencies change
 - helps prevent uneccessary renders of the children because the children will always be using the same function object
   - e.g. shouldComponentUpdate
-```javascript
+\`\`\`javascript
 import React, {useState, useCallback } from "react";
 import DisplayCount from "./DisplayCount";
 
 const App = () => {
   const [count, setCount] = useState(0);
   
-  const showCount = useCallback(() => alert(`Count ${count}`)), [count]);
+  const showCount = useCallback(() => alert(\`Count \${count}\`)), [count]);
 
   return (
     <>
@@ -353,19 +353,19 @@ const App = () => {
 };
 
 export default App;
-```
+\`\`\`
 ### useContext
 - allows us to work with react context api, which allows us to share data without passing props
 - A component calling useContext will always re-render when the context value changes
   - optimize with memoization if component computation is expensive
 #### set state
-```javascript
+\`\`\`javascript
 import { createContext } from "react";
 
 export default MoodContext = createContext(null);
-```
+\`\`\`
 #### share state
-```javascript
+\`\`\`javascript
 import React, { useState } from "react";
 import MoodContext from "./MoodContext";
 import MoodEmoji from "./MoodEmoji";
@@ -383,10 +383,10 @@ export default function App() {
     </MoodContext.Provider>
   );
 }
-```
+\`\`\`
 #### use state
-- using ```XxxContext.Consumer```
-```javascript
+- using \`\`\`XxxContext.Consumer\`\`\`
+\`\`\`javascript
 import React from "react";
 import MoodContext from "./MoodContext";
   
@@ -397,9 +397,9 @@ export default function MoodEmoji() {
     </MoodContext.Consumer>
   );
 };
-```
-- using ```useContext```
-```javascript
+\`\`\`
+- using \`\`\`useContext\`\`\`
+\`\`\`javascript
 import React, { useContext } from "react";
 import MoodContext from "./MoodContext";
   
@@ -412,10 +412,10 @@ export default function MoodEmoji() {
     </p>
   );
 };
-```
+\`\`\`
 #### use generic context
 - GenericContext file
-```typescript
+\`\`\`typescript
 import React, { Dispatch, createContext, SetStateAction, useState, PropsWithChildren } from "react;
 
 export default function createCtx<A>(defaultValue: A) {
@@ -437,15 +437,15 @@ export default function createCtx<A>(defaultValue: A) {
   
   return [ctx, Provider] as const;
 }
-```
+\`\`\`
 - set state with SampleContext file
-```typescript
+\`\`\`typescript
 import createCtx from "./GenericContext";
 
 export const [SampleContext, SampleProvider] = createCtx("default value");
-```
+\`\`\`
 - share state
-```typescript
+\`\`\`typescript
 import React from "react";
 import { SampleProvider } from "./SampleContext";
 import SampleFeature from "./SampleFeature";
@@ -457,9 +457,9 @@ export default function App() {
     </SampleProvider>
   );
 }
-```
+\`\`\`
 - use state with useContext
-```typescript
+\`\`\`typescript
 import React, { useContext } from "react";
 import SampleContext from "./SampleContext";
   
@@ -472,7 +472,7 @@ export default function SomeFeature() {
     </p>
   );
 };
-```
+\`\`\`
 ### useReducer
 - an alternative to useState
   - returns an array of 2 values
@@ -487,7 +487,7 @@ export default function SomeFeature() {
 - React guarantees that dispatch function identity is stable and won’t change on re-renders
   - This is why it’s safe to omit from the useEffect or useCallback dependency list
 #### Single state
-```javascript
+\`\`\`javascript
 import React, { useReducer } from "react";
 
 const initialState = 0;
@@ -515,9 +515,9 @@ export default function App() {
     </>
   );
 };
-```
+\`\`\`
 #### Multiple states
-```javascript
+\`\`\`javascript
 import React, { useReducer } from "react";
 
 const initialState = { count: 0 };
@@ -545,9 +545,9 @@ export default function App() {
     </>
   );
 };
-```
+\`\`\`
 #### Lazy initialization
-```javascript
+\`\`\`javascript
 import React, { useReducer } from "react";
 
 function init(initialCount) {
@@ -582,16 +582,16 @@ export default function App() {
     </>
   );
 };
-```
+\`\`\`
 ### useImperativeHandle
 - customizes the instance value that is exposed to the parent components when using ref
   - imperative code using refs should be avoided in most cases
-- ```useImperativeHandle``` should be used with forwardRef
+- \`\`\`useImperativeHandle\`\`\` should be used with forwardRef
 - it is mainly used to change the behavior of the exposed ref, which is a rare use case
 - use cases
   - if you build a reusable component library, you may need to get access to the underlying DOM element
     - and then forward it so that it can be accessed by the consumers of the component library
-```javascript
+\`\`\`javascript
 import React, { forwardRef, useRef } from "react";
 
 const FancyInput = forwardRef((props, ref) => {
@@ -617,8 +617,8 @@ const FancyInput = forwardRef((props, ref) => {
 });
 
 export default FancyInput;
-```
-```javascript
+\`\`\`
+\`\`\`javascript
 import React, { useRef } from "react";
 import FancyInput from "./FancyInput";
 
@@ -637,7 +637,7 @@ function App() {
 }
 
 export default App;
-```
+\`\`\`
 ### useLayoutEffect
 - identical to useEffect, but it fires synchronously after all DOM mutations
   - difference is that the callback will run after render but before the actual updates have been displayed to the screen
@@ -650,7 +650,7 @@ export default App;
   - neither useLayoutEffect nor useEffect can run until the JavaScript is downloaded
     - To fix this, either move that logic to useEffect (if it isn’t necessary for the first render)
     - or delay showing that component until after the client renders (if the HTML looks broken until useLayoutEffect runs)
-```javascript
+\`\`\`javascript
 import React, { useRef, useLayoutEffect } from "react";
 
 function App() {
@@ -667,11 +667,11 @@ function App() {
 }
 
 export default App;
-```
+\`\`\`
 ### Custom Hooks
 #### useDebugValue
 - used to display a label for custom hooks in React DevTools
-```javascript
+\`\`\`javascript
 import { useState, useEffect, useDebugValue } from "react";
 
 export default function useCount() {
@@ -698,8 +698,8 @@ export default function useCount() {
     handleClick,
   };
 }
-```
-```javascript
+\`\`\`
+\`\`\`javascript
 import React from "react";
 import useCount from "./useCount";
 
@@ -708,10 +708,10 @@ export default function App() {
   
   return (<div onClick={handleClick}>count {count}</div>);
 };
-```
+\`\`\`
 ## Forms
 ### Uncontrolled form
-```javascript
+\`\`\`javascript
 import React from "react";
 
 export default class App extends React.Component {
@@ -734,14 +734,14 @@ export default class App extends React.Component {
     );
   }
 }
-```
-#### using ```useRef```
+\`\`\`
+#### using \`\`\`useRef\`\`\`
 - allows you to create a mutable plain javascript object that keeps the same reference between renders
 - can be used when there is a value that changes similar to setState
   - however, it does not trigger a re-render if the value changes
 - common use is to grab native HTML elements from the DOM
 - this hook should be used when you need to grab an element from the DOM 
-```javascript
+\`\`\`javascript
 import React, { useRef } from "react";
 
 export default function App() => {
@@ -759,9 +759,9 @@ export default function App() => {
     </form>
   );
 }
-```
+\`\`\`
 ### Controlled form
-```javascript
+\`\`\`javascript
 import React from "react";
 
 export default class App extends React.Component {
@@ -787,8 +787,8 @@ export default class App extends React.Component {
     );
   }
 }
-```
-```javascript
+\`\`\`
+\`\`\`javascript
 import React, { useState } from "react";
 
 export default function App() => {
@@ -810,4 +810,5 @@ export default function App() => {
     </form>
   );
 }
-```
+\`\`\`
+`;

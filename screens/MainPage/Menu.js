@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Button, View } from 'react-native';
 import { fetchNoteSubjects, fetchMarkdownData } from '../../utils/fetchTools';
 import localNotes from '../../localData/localNotesManifest';
+import stripHTMLFromString from '../../utils/stripHTMLFromString';
 import makeArrayUnique from '../../utils/returnUniqueArray';
 import menuStyles from '../../styles/menu';
 import buttonStyles from '../../styles/button';
@@ -17,7 +18,7 @@ const MenuButtons = ({ titles, onPressHandler }) =>
   titles.map((title) => (
     <View style={buttonStyles.container} key={`${title}_view`}>
       <Button
-        title={title}
+        title={title in localNotes ? `${title} (local)` : title}
         onPress={() => onPressHandler(title)}
         key={`${title}_button`}
         style={buttonStyles.button}
@@ -35,15 +36,17 @@ export default ({ viewerCallback }) => {
   };
 
   const onPressHandler = async (selectedTitle) => {
-    /**
-     * We load the selected markdown data before navigating so it the transition to viewer is less jarring
-     */
+    // Loading selected markdown data before navigation for better experience
 
     const isNoteLocal = selectedTitle in localNotes;
-    const markdownURL = isNoteLocal
-      ? localNotes[selectedTitle]
-      : onlineNotes[selectedTitle].markdownURL;
+    if (isNoteLocal) {
+      return viewerCallback({
+        title: selectedTitle,
+        markdownData: stripHTMLFromString(localNotes[selectedTitle]),
+      });
+    }
 
+    const markdownURL = onlineNotes[selectedTitle].markdownURL;
     return viewerCallback({
       title: selectedTitle,
       markdownData: await fetchMarkdownData(markdownURL),
