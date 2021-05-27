@@ -37,6 +37,9 @@ export default ({ viewerCallback }) => {
   const titles = () => Object.keys(notes);
 
   const onPressHandler = async (selectedTitle) => {
+    /**
+     * We load the selected markdown data before navigating so it the transition to viewer is less jarring
+     */
     const markdownURL = notes[selectedTitle].markdownURL;
     return viewerCallback({
       title: selectedTitle,
