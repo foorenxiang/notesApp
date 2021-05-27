@@ -1,20 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { Button, View } from 'react-native';
 import { fetchNoteSubjects, fetchMarkdownData } from '../../utils/fetchTools';
+import localNotes from '../../localData/localNotesManifest';
+import makeArrayUnique from '../../utils/returnUniqueArray';
 import menuStyles from '../../styles/menu';
 import buttonStyles from '../../styles/button';
 
-const cachedData = {
-  // screenName: {
-  //   screen: 'screen title',
-  //   markdownData: '',
-  // },
-};
-
-const useEffectCallback = (setNotes) => {
+const useEffectCallback = (setOnlineNotes) => {
   (async () => {
-    const data = await fetchNoteSubjects();
-    setNotes(() => data);
+    const onlineNoteSubjects = await fetchNoteSubjects();
+    setOnlineNotes(() => onlineNoteSubjects);
   })();
 };
 
@@ -31,16 +26,24 @@ const MenuButtons = ({ titles, onPressHandler }) =>
   ));
 
 export default ({ viewerCallback }) => {
-  const [notes, setNotes] = useState(cachedData);
+  const [onlineNotes, setOnlineNotes] = useState({});
 
-  useEffect(() => useEffectCallback(setNotes), []);
-  const titles = () => Object.keys(notes);
+  useEffect(() => useEffectCallback(setOnlineNotes), []);
+  const titles = () => {
+    const mergedNotesTitles = [...Object.keys(localNotes), ...Object.keys(onlineNotes)];
+    return makeArrayUnique(mergedNotesTitles);
+  };
 
   const onPressHandler = async (selectedTitle) => {
     /**
      * We load the selected markdown data before navigating so it the transition to viewer is less jarring
      */
-    const markdownURL = notes[selectedTitle].markdownURL;
+
+    const isNoteLocal = selectedTitle in localNotes;
+    const markdownURL = isNoteLocal
+      ? localNotes[selectedTitle]
+      : onlineNotes[selectedTitle].markdownURL;
+
     return viewerCallback({
       title: selectedTitle,
       markdownData: await fetchMarkdownData(markdownURL),

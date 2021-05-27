@@ -1,3 +1,5 @@
+'use strict';
+
 export default (str) => {
   const pattern = new RegExp(
     '^(https?:\\/\\/)?' + // protocol

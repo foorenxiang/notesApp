@@ -1,3 +1,5 @@
+'use strict';
+
 import { SERVED_NOTES_URL, NOTES_REPOSITORY_URL } from './constants';
 import _ from 'lodash';
 import isURL from './isURL';
