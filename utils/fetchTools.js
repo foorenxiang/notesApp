@@ -17,8 +17,7 @@ const logError = (err, url) => {
 export const fetchText = async (url) => {
   try {
     const response = await fetch(url);
-    const textData = await response.text();
-    return textData;
+    return response.text();
   } catch (err) {
     logError(err, url);
     return '';
@@ -28,8 +27,7 @@ export const fetchText = async (url) => {
 export const fetchJSON = async (url) => {
   try {
     const response = await fetch(url);
-    const data = await response.json();
-    return data;
+    return await response.json();
   } catch (err) {
     logError(err, url);
     return {};
@@ -59,7 +57,6 @@ const fileExtensionFromURL = (url) => {
 };
 
 const fetchMarkdownData = async (markdownURL) => {
-  console.log('Fetching markdown file');
   const markdownData = await fetchText(markdownURL);
   return stripHTMLFromString(markdownData);
 };
@@ -83,7 +80,6 @@ const languageNameFromExtension = async (providedExt) => {
 };
 
 const fetchSourceFile = async (url, fileExtension) => {
-  console.log('Fetching source file');
   const sourceFileText = await fetchText(url);
 
   const language = await languageNameFromExtension(fileExtension);
@@ -102,11 +98,16 @@ const fetchSourceFile = async (url, fileExtension) => {
   return sourceFileTextAsMarkdown(sourceFileText);
 };
 
-export const fetchNotesData = async (url) => {
+const appendSource = (url, markdownData) => `From source: ${url}\n${markdownData}`;
+
+const getMarkdownData = async (url) => {
   const fileExtension = fileExtensionFromURL(url);
-  const notesData =
-    fileExtension === 'md'
-      ? await fetchMarkdownData(url)
-      : await fetchSourceFile(url, fileExtension);
+  return fileExtension === 'md'
+    ? await fetchMarkdownData(url)
+    : await fetchSourceFile(url, fileExtension);
+};
+
+export const fetchNotesData = async (url) => {
+  const notesData = appendSource(url, await getMarkdownData(url));
   return notesData;
 };
