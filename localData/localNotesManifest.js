@@ -4,10 +4,7 @@ import FlaskTutorial from './flaskTutorial.js';
 import Jenkins from './Jenkins.js';
 
 const localNotes = {
-  'Python Design Patterns': PythonDesignPatterns,
-  React: ReactNotes,
-  'Flask Tutorial': FlaskTutorial,
-  Jenkins,
+  // 'Python Design Patterns': PythonDesignPatterns,
 };
 
 export default localNotes;
