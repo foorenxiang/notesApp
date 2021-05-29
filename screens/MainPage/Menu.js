@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Button, ScrollView, View } from 'react-native';
-import { fetchNoteSubjects, fetchMarkdownData } from '../../utils/fetchTools';
+import { fetchNoteSubjects, fetchNotesData } from '../../utils/fetchTools';
 import localNotes from '../../localData/localNotesManifest';
 import stripHTMLFromString from '../../utils/stripHTMLFromString';
 import makeArrayUnique from '../../utils/returnUniqueArray';
@@ -41,10 +41,10 @@ export default ({ viewerCallback }) => {
     const isNoteOnline = selectedTitle in onlineNotes;
 
     if (isNoteOnline) {
-      const markdownURL = onlineNotes[selectedTitle].markdownURL;
+      const url = onlineNotes[selectedTitle].url;
       return viewerCallback({
         title: selectedTitle,
-        markdownData: await fetchMarkdownData(markdownURL),
+        markdownData: await fetchNotesData(url),
       });
     }
 
