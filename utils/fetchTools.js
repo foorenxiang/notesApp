@@ -5,7 +5,7 @@ import {
   NOTES_REPOSITORY_URL,
   LANGUAGE_EXTENSIONS_DESCRIPTORS_URL,
 } from './constants';
-import startCase from 'lodash/startCase';
+import startCase from 'lodash.startcase';
 import isURL from './isURL';
 import stripHTMLFromString from './stripHTMLFromString';
 
