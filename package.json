@@ -16,6 +16,7 @@
     "@react-navigation/stack": "^5.14.5",
     "expo": "~41.0.1",
     "expo-status-bar": "~1.0.4",
+    "gatsby-plugin-react-native-web": "^3.1.0",
     "lodash.startcase": "^4.4.0",
     "punycode": "^2.1.1",
     "react": "16.13.1",
