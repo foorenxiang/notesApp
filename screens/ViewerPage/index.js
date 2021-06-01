@@ -1,8 +1,6 @@
 import React from 'react';
 import { ScrollView } from 'react-native';
-import MarkdownNative from 'react-native-markdown-display';
-import MarkdownWeb from 'markdown-to-jsx';
-import { isNativeDevice } from '../../utils/platformDetector';
+import MarkdownRenderer from './MarkdownRenderer';
 
 export default ({ route, navigation }) => {
   const { markdownData } = route.params;
@@ -14,11 +12,7 @@ export default ({ route, navigation }) => {
         paddingHorizontal: '5%',
       }}
     >
-      {isNativeDevice ? (
-        <MarkdownNative>{markdownData}</MarkdownNative>
-      ) : (
-        <MarkdownWeb>{markdownData}</MarkdownWeb>
-      )}
+      <MarkdownRenderer>{markdownData}</MarkdownRenderer>
     </ScrollView>
   );
 };
