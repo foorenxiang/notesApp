@@ -90,7 +90,7 @@ const fetchSourceFile = async (url, fileExtension) => {
     const title = language
       ? `### ${language}${' source file'} (.${fileExtension})\n`
       : `### .${fileExtension}${' source file'} \n`;
-    const markdownCodeblockPrefix = `${MARKDOWN_CODEBLOCK} ${language}\n`;
+    const markdownCodeblockPrefix = `${MARKDOWN_CODEBLOCK}${language.toLowerCase()}\n`;
     const markdownCodeblockSuffix = MARKDOWN_CODEBLOCK;
     return `${title}${markdownCodeblockPrefix}${sourceFileText}${markdownCodeblockSuffix}`;
   };
