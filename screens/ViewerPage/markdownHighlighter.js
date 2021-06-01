@@ -1,5 +1,6 @@
 // https://medium.com/young-developer/react-markdown-code-and-syntax-highlighting-632d2f9b4ada
 // https://www.npmjs.com/package/react-syntax-highlighter
+// https://github.com/remarkjs/react-markdown
 import React from 'react';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { atomDark as highlightingStyle } from 'react-syntax-highlighter/dist/esm/styles/prism';
